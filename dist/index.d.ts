@@ -11,5 +11,6 @@ import Header from "./components/header";
 import MenuList from "./components/menu-list";
 import ControlList from "./components/control-list";
 import { App as AppComponent } from "./app";
+export * from "./components/control-item";
 export { TimelineComponent, NavbarComponent, PlayheadComponent, RulerComponent, Header, AppComponent, MenuList, ControlList, };
 //# sourceMappingURL=index.d.ts.map

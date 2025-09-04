@@ -280,7 +280,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
         scrollLeft={scrollLeft}
       />
       <Playhead scrollLeft={scrollLeft} />
-      <div className="flex">
+      <div className="flex size-full">
         <div className="relative w-10 flex-none"></div>
         <div className="relative h-[230px] flex-1">
           <div
