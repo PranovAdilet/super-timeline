@@ -25,7 +25,7 @@ export declare class TrackItemsMixin {
     updateTrackItemsDetails(this: Timeline, payload: Partial<ITrackItem>[], options?: {
         trackItemIds?: string[];
     }): void;
-    getTrackItems(this: Timeline): import("fabric").FabricObject<Partial<import("fabric").FabricObjectProps>, import("fabric").SerializedObjectProps, import("fabric").ObjectEvents>[];
+    getTrackItems(this: Timeline): import("fabric/*").FabricObject<Partial<import("fabric/*").FabricObjectProps>, import("fabric/*").SerializedObjectProps, import("fabric/*").ObjectEvents>[];
     setActiveTrackItemCoords(this: Timeline): void;
     deleteTrackItemById(this: Timeline, itemIds: any[]): void;
     selectTrackItemByIds(this: Timeline, itemIds: any[]): void;

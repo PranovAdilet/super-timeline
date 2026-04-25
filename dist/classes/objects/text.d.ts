@@ -61,7 +61,7 @@ export declare function createResizeControls(): {
     mr: Control;
     ml: Control;
 };
-export declare const handleResize: import("fabric").TransformActionHandler<import("fabric").Transform>;
+export declare const handleResize: import("fabric/*").TransformActionHandler<import("fabric/*").Transform>;
 export declare const positionOffsets: {
     left: number;
     top: number;

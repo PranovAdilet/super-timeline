@@ -28,8 +28,8 @@ declare class ImageClass extends Rect {
     constructor(config: ImageProps);
     static createControls(): {
         controls: {
-            mr: import("fabric").Control;
-            ml: import("fabric").Control;
+            mr: import("fabric/*").Control;
+            ml: import("fabric/*").Control;
         };
     };
     static getDefaults(): {

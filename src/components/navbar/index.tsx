@@ -113,10 +113,7 @@ export const ResizeVideo = () => {
     <div className="text-sm">
       <Popover
         trigger={
-          <Button
-            className="border border-border"
-            variant="secondary"
-          >
+          <Button className="border border-border" variant="secondary">
             Resize
           </Button>
         }
@@ -244,7 +241,7 @@ export const DownloadPopover = ({
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (downloadState.renderId) {
       interval = setInterval(() => {
         fetch(`${baseUrl}/status/${downloadState.renderId}`)
@@ -308,18 +305,12 @@ export const DownloadPopover = ({
       ) : (
         <div className="flex flex-col gap-3">
           <Label>Export settings</Label>
-          <Button
-            className="w-full justify-between"
-            variant="outline"
-          >
+          <Button className="w-full justify-between" variant="outline">
             <div>MP4</div>
             <ChevronDown width={16} />
           </Button>
           <div>
-            <Button
-              onClick={handleExport}
-              className="w-full"
-            >
+            <Button onClick={handleExport} className="w-full">
               {isPending ? <Spinner /> : "Export"}
             </Button>
           </div>

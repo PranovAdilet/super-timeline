@@ -33,12 +33,12 @@ export const App = () => {
   const [data, setData] = useState<any>([]);
   // const [isVisible, setIsVisible] = useState(true);
 
-  useEffect(() => {
-    if (!data) return;
-    eventBus.dispatch(SCENE_LOAD, {
-      payload: data,
-    });
-  }, [data]);
+  // useEffect(() => {
+  //   if (!data) return;
+  //   eventBus.dispatch(SCENE_LOAD, {
+  //     payload: data,
+  //   });
+  // }, [data]);
 
   useEffect(() => {
     setState({
