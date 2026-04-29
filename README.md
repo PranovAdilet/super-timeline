@@ -78,8 +78,6 @@ node render.mjs --props ./props.json
 }
 ```
 
-> Важно: сейчас `outputLocation` в `render.mjs` указывает на `/tmp/...mp4`. Для Windows обычно удобнее заменить путь на локальный (например, `./output/...mp4`).
-
 ## Публичные экспорты
 
 Главная точка входа: `src/index.ts`.
