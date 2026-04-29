@@ -1,5 +1,3 @@
-import TecnicaStencil2Rg from "../../../assets/TecnicaStencil2Rg.png";
-
 export const DEFAULT_FONT = {
   id: "font_UwdNKSyVq2iiMiuHSRRsUIOu",
   family: "Roboto",
@@ -12872,17 +12870,5 @@ export const FONTS = [
     updatedAt: "2023-06-20T04:42:55.909Z",
     userId: null,
   },
-  {
-    id: "font_n23KxuTNynAlBkw_y0GLEBdc_TecnicaStencil2Rg",
-    family: "TecnicaStencil2Rg",
-    fullName: "TecnicaStencil2Rg Regular",
-    postScriptName: "TecnicaStencil2Rg",
-    preview: TecnicaStencil2Rg,
-    style: "TecnicaStencil2Rg",
-    category: "serif",
-    createdAt: "2023-06-20T04:42:55.909Z",
-    updatedAt: "2023-06-20T04:42:55.909Z",
-    userId: null,
-    url: "https://pub-080bd850f72849898902fc3867a487f6.r2.dev/fonts/TecnicaStencil2Rg.woff2",
-  },
+  
 ];
