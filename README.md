@@ -1,50 +1,109 @@
-# React + TypeScript + Vite
+# Super Timeline
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`super-timeline` — React/TypeScript библиотека и демо-приложение для монтажа таймлайна (video/image/text/audio) с последующим рендером через Remotion.
 
-Currently, two official plugins are available:
+## Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- редактирование клипов на таймлайне (позиция, длительность, треки);
+- поддержка типов элементов: `video`, `image`, `text`, `audio`, `voiceover`;
+- UI-компоненты редактора (таймлайн, линейка, плейхед, navbar, header и др.);
+- рендер композиции `Timeline` в видео через Remotion (`render.mjs`);
+- сборка как библиотеки с экспортами из `dist`.
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `React 19` + `TypeScript`;
+- `Vite`;
+- `Remotion` (`@remotion/cli`, `@remotion/player`, `@remotion/renderer`);
+- `Radix UI`, `Tailwind`, `Zustand`, `RxJS`, `Fabric.js`.
 
-- Configure the top-level `parserOptions` property like this:
+## Быстрый старт
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1) Установка
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2) Локальный запуск
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+Приложение поднимается на `http://localhost:3000`.
+
+### 3) Сборка библиотеки
+
+```bash
+npm run build
+```
+
+Команда собирает bundle и генерирует декларации типов в `dist`.
+
+## Скрипты
+
+- `npm run dev` — dev-сервер Vite на порту `3000`;
+- `npm run build` — production build + `d.ts`;
+- `npm run lint` — проверка ESLint;
+- `npm run preview` — локальный preview собранного проекта.
+
+## Рендер видео через Remotion
+
+В проекте есть скрипт `render.mjs`, который:
+
+1. принимает JSON с props;
+2. собирает Remotion bundle;
+3. выбирает композицию `Timeline`;
+4. рендерит `mp4` (codec `h264`).
+
+### Запуск
+
+```bash
+node render.mjs --props ./props.json
+```
+
+### Минимальный формат `props.json`
+
+```json
+{
+  "fileName": "Timeline",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "trackItemIds": [],
+  "trackItemsMap": {},
+  "trackItemDetailsMap": {},
+  "transitionsMap": {}
+}
+```
+
+> Важно: сейчас `outputLocation` в `render.mjs` указывает на `/tmp/...mp4`. Для Windows обычно удобнее заменить путь на локальный (например, `./output/...mp4`).
+
+## Публичные экспорты
+
+Главная точка входа: `src/index.ts`.
+
+Экспортируются:
+
+- модули `components`, `classes`, `shared`, `lib/utils`;
+- CSS: `style.css`;
+- именованные компоненты: `TimelineComponent`, `NavbarComponent`, `PlayheadComponent`, `RulerComponent`, `Header`, `MenuList`, `ControlList`, `AppComponent`.
+
+## Структура проекта
+
+```text
+src/
+  components/      UI редактора и player-композиции
+  classes/         бизнес-логика, события, менеджеры состояния
+  shared/          типы, сторы и общие утилиты
+  remotion/        регистрация RootComposition
+render.mjs         CLI-рендер видео через Remotion
+vite.config.ts     конфиг Vite + alias "@"
+```
+
+## Примечания по разработке
+
+- alias `@` настроен на `src` в `vite.config.ts`;
+- composition id для рендера: `Timeline`;
+- длительность композиции вычисляется из `trackItemsMap` (по максимальному `display.to`).
